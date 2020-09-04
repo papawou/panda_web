@@ -1,0 +1,46 @@
+{
+	"name": "zob",
+	"version": "1.0.0",
+	"description": "",
+	"private": true,
+	"main": "server.js",
+	"scripts": {
+		"start:prod": "( npm run prod:build ) && ( npm run prod:start )",
+		"prod:start": "cross-env NODE_ENV=production babel-node ./server.js",
+		"prod:build": "webpack --mode=production --config webpack.prod.config.js --display-error-details",
+		"start:dev": "cross-env NODE_ENV=development nodemon --ignore './frontend/' --ignore './public/' --exec babel-node server.js"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"dependencies": {
+		"@types/react": "^16.9.44",
+		"express": "^4.17.1",
+		"react": "^16.13.1",
+		"react-dom": "^16.13.1",
+		"react-router-dom": "^5.2.0",
+		"react-router-hash-link": "^1.2.2",
+		"styled-components": "^4.4.1",
+		"styled-normalize": "^8.0.7"
+	},
+	"devDependencies": {
+		"@babel/cli": "^7.10.5",
+		"@babel/core": "^7.11.0",
+		"@babel/node": "^7.10.5",
+		"@babel/plugin-proposal-class-properties": "^7.10.4",
+		"@babel/plugin-transform-runtime": "^7.11.0",
+		"@babel/preset-env": "^7.11.0",
+		"@babel/preset-react": "^7.10.4",
+		"@hot-loader/react-dom": "^16.13.0",
+		"babel-loader": "^8.1.0",
+		"colors": "^1.4.0",
+		"cross-env": "^6.0.3",
+		"nodemon": "^1.19.4",
+		"react-hot-loader": "^4.12.21",
+		"svg-inline-loader": "^0.8.2",
+		"webpack": "^4.44.1",
+		"webpack-cli": "^3.3.12",
+		"webpack-dev-server": "^3.11.0",
+		"webpack-hot-middleware": "^2.25.0"
+	}
+}
