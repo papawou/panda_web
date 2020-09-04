@@ -61,6 +61,8 @@ const SRoot = styled.div`
     max-width: calc(70vh * 16/9);
     max-height: 70vh;
     margin: auto;
+    width: 100%;
+    height: 100%;
 `
 
 const SWrapButton = styled.div`
