@@ -24,10 +24,11 @@ font-size: 20px;
 `
 
 const SHover = styled.div`
+top: calc(100% - 50px);
+bottom: 0;
 left: 24px;
 right: 24px;
-top: 0;
-bottom: 0;
+
 padding-left: 10%;
 padding-right: 10%;
 
@@ -38,14 +39,16 @@ flex-direction: column;
 flex-wrap: nowrap;
 justify-content: center;
 align-items: center;
-opacity: 0;
+opacity: 0.7;
 position: absolute;
 z-index: 1;
 
 ${SGame}:hover & {
+    top: 0;
     opacity: 1;
 }
-transition: backdrop-filter 0.5s, opacity 0.5s;
+
+transition: opacity 0.7s ease-in-out, top 0.5s;
 `
 
 const SImg = styled.img`
@@ -56,10 +59,20 @@ height: 100%;
 `
 
 const Game = ({ game, set_run }) => {
-    return <SGame onMouseEnter={() => set_run(false)}>
+    const [is_hover, set_hover] = useState(false)
+    return <SGame
+        onMouseEnter={() => {
+            set_run(false)
+            set_hover(true)
+        }}
+        onMouseLeave={() => {
+            set_hover(false)
+        }}>
         <SHover>
             <STitle>{game.name}</STitle>
-            <SDesc>{game.desc}</SDesc>
+            {
+                is_hover ? <SDesc>{game.desc}</SDesc> : null
+            }
         </SHover>
         <SImg src={`.${game.thumbnail}`} />
     </SGame >
