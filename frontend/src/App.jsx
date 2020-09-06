@@ -9,21 +9,22 @@ import styled, { createGlobalStyle } from 'styled-components'
 import _games from '../../public/src/games.json'
 import { Slider } from './Slider'
 
+const GlobalStyle = createGlobalStyle`
+  body {
+    margin: 0;
+  }
+  * {
+    box-sizing: border-box;
+    font-family: Roboto, sans-serif;
+  }
+`
+
 const SBase = styled.div`
 box-sizing: border-box;
-overflow-x: hidden;
-overflow-y: hidden;
 & * {
-  user-select:none;
-  font-family: Roboto, sans-serif;
   box-sizing: border-box;
+  font-family: Roboto, sans-serif;
 }
-
-max-width: calc(70vh * 16/9);
-max-height: 70vh;
-width: 100%;
-height: 100%;
-margin: auto;
 `
 
 const STitle = styled.div`
@@ -33,10 +34,13 @@ font-size: 24px;
 `
 
 const App = () => {
-  return <SBase>
-    <STitle>Découvrez nos jeux</STitle>
-    <Slider />
-  </SBase>
+  return <React.Fragment>
+    <GlobalStyle />
+    <SBase>
+      <STitle>Découvrez nos jeux...</STitle>
+      <Slider />
+    </SBase>
+  </React.Fragment>
 }
 
 export default hot(App)

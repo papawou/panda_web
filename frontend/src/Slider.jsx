@@ -11,6 +11,9 @@ import Game from './Game'
 const SSlider = styled.div`
 position: relative;
 z-index: 0;
+max-width: calc(70vh * 16/9);
+max-height: 70vh;
+margin: auto;
 `
 
 const SWrapButton = styled.div`
@@ -28,12 +31,12 @@ justify-content: space-between;
 const SGames = styled.div`
 display: flex;
 flex-wrap: nowrap;
+scroll-snap-type: x mandatory;
+scroll-behavior: smooth;
+align-items: center;
+background-color: pink;
 overflow-x: hidden;
 overflow-y: hidden;
-scroll-snap-type: x mandatory;
-scroll-behavior: smooth
-align-items: center;
-height: 100%;
 `
 
 export const Slider = () => {
@@ -44,7 +47,7 @@ export const Slider = () => {
 
     const [run, set_run] = useState(true)
     const [current_id, set_current_id] = useState(0)
-    /*
+
     useEffect(() => {
         let interval
         if (!run) {
@@ -64,7 +67,7 @@ export const Slider = () => {
         }
         return () => clearInterval(interval)
     }, [run])
-    */
+
     const decrId = () => {
         set_run(false)
         set_current_id(prev_id => prev_id - 1 < 0 ? 0 : prev_id - 1)
@@ -91,5 +94,5 @@ export const Slider = () => {
                 })
             }
         </SGames>
-    </SSlider >
+    </SSlider>
 }

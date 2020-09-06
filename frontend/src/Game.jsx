@@ -24,6 +24,7 @@ font-size: 20px;
 `
 
 const SHover = styled.div`
+top: calc(100% - 50px);
 bottom: 0;
 left: 24px;
 right: 24px;
@@ -55,6 +56,7 @@ object-fit: contain;
 object-position: center center;
 width: 100%;
 height: 100%;
+display:block;
 `
 
 const Game = ({ game, set_run }) => {
@@ -67,12 +69,12 @@ const Game = ({ game, set_run }) => {
         onMouseLeave={() => {
             set_hover(false)
         }}>
-        {/*<SHover>
+        {<SHover>
             <STitle>{game.name}</STitle>
             {
                 is_hover ? <SDesc>{game.desc}</SDesc> : null
             }
-        </SHover>*/}
+        </SHover>}
         <SImg src={`.${game.thumbnail}`} />
     </SGame >
 }
