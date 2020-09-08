@@ -34,7 +34,6 @@ flex-wrap: nowrap;
 scroll-snap-type: x mandatory;
 scroll-behavior: smooth;
 align-items: center;
-background-color: pink;
 overflow-x: hidden;
 overflow-y: hidden;
 `

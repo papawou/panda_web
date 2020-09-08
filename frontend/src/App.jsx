@@ -10,13 +10,6 @@ import _games from '../../public/src/games.json'
 import { Slider } from './Slider'
 
 const GlobalStyle = createGlobalStyle`
-  body {
-    margin: 0;
-  }
-  * {
-    box-sizing: border-box;
-    font-family: Roboto, sans-serif;
-  }
 `
 
 const SBase = styled.div`
@@ -24,7 +17,10 @@ box-sizing: border-box;
 & * {
   box-sizing: border-box;
   font-family: Roboto, sans-serif;
+  user-select: none;
 }
+width: 100%;
+height: 100%;
 `
 
 const STitle = styled.div`
