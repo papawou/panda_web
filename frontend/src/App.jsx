@@ -9,31 +9,25 @@ import styled, { createGlobalStyle } from 'styled-components'
 import _games from '../../public/src/games.json'
 import { Slider } from './Slider'
 
-const GlobalStyle = createGlobalStyle`
-`
-
 const SBase = styled.div`
 box-sizing: border-box;
 & * {
   box-sizing: border-box;
-  font-family: Roboto, sans-serif;
   user-select: none;
 }
 width: 100%;
 height: 100%;
+min-width: 354px;
 `
 
 const STitle = styled.div`
-padding: 5px 0px 5px 0px;
 text-align: center;
-font-size: 24px;
 `
 
 const App = () => {
   return <React.Fragment>
-    <GlobalStyle />
+    <STitle className="h2 travel">Les expériences proposées</STitle>
     <SBase>
-      <STitle>Découvrez nos jeux...</STitle>
       <Slider />
     </SBase>
   </React.Fragment>

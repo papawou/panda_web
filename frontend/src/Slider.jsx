@@ -10,9 +10,8 @@ import Game from './Game'
 
 const SSlider = styled.div`
 position: relative;
-z-index: 0;
-max-width: calc(70vh * 16/9);
-max-height: 70vh;
+max-width: calc(60vh * 16/9);
+max-height: 60vh;
 margin: auto;
 `
 

@@ -8,6 +8,7 @@ position: relative;
 z-index: 0;
 padding-left: 24px;
 padding-right: 24px;
+font-family: Raleway;
 `
 
 const SDiv = styled.div`
@@ -16,15 +17,21 @@ color: white;
 `
 
 const STitle = styled(SDiv)`
-font-size: 24px;
+font-size: 20px;
 font-weight: bold;
 `
 const SDesc = styled(SDiv)`
-font-size: 20px;
+font-size: 16px;
+height: 0px;
+overflow: hidden;
+${SGame}:hover & {
+    height: auto;
+}
 `
 
 const SHover = styled.div`
-top: calc(100% - 50px);
+top: calc(100% - 45px);
+overflow: hidden;
 bottom: 0;
 left: 24px;
 right: 24px;
@@ -56,25 +63,18 @@ object-fit: contain;
 object-position: center center;
 width: 100%;
 height: 100%;
-display:block;
+display: block;
 `
 
 const Game = ({ game, set_run }) => {
-    const [is_hover, set_hover] = useState(false)
     return <SGame
         onMouseEnter={() => {
             set_run(false)
-            set_hover(true)
-        }}
-        onMouseLeave={() => {
-            set_hover(false)
         }}>
-        {<SHover>
+        <SHover>
             <STitle>{game.name}</STitle>
-            {
-                is_hover ? <SDesc>{game.desc}</SDesc> : null
-            }
-        </SHover>}
+            <SDesc>{game.desc}</SDesc>
+        </SHover>
         <SImg src={`.${game.thumbnail}`} />
     </SGame >
 }
