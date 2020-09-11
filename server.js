@@ -14,7 +14,7 @@ app.use(express.urlencoded({ extended: true }))
 
 //DEVELOPMENT
 if (environment === 'development') {
-    console.log('o==3 DEVELOPMENT RUN o==3')
+    console.log('!!! DEVELOPMENT RUN !!!')
 
     let enable_webpack = true
     //WEBPACK
