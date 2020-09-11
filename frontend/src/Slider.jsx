@@ -1,9 +1,8 @@
 
 import React, { Fragment, useState, useEffect, useRef } from 'react'
+import axios from 'axios'
 //CSS
 import styled from 'styled-components'
-
-import _games from '../../public/src/games.json'
 import { NextButton } from './import_svg'
 
 import Game from './Game'
@@ -38,21 +37,41 @@ overflow-y: hidden;
 `
 
 export const Slider = () => {
-    let i_games = -1
-    let games = _games.map(game => {
-        return { ...game, id: i_games++ }
-    })
+    //fetch games
+    const [games, set_games] = useState([])
+    useEffect(() => {
+        const fetchData = async () => {
+            const result = await axios('/src/games.json')
+            let i = -1
+            set_games(result.data.map(game => ({ ...game, id: i++ })));
+        }
+
+        fetchData()
+    }, [])
 
     const [run, set_run] = useState(true)
     const [current_id, set_current_id] = useState(0)
 
+    //onclick button
+    const decrId = () => {
+        set_run(false)
+        set_current_id(prev_id => prev_id - 1 < 0 ? 0 : prev_id - 1)
+    }
+    const incrId = () => {
+        set_run(false)
+        set_current_id(prev_id => prev_id + 1 > games.length - 1 ? games.length - 1 : prev_id + 1)
+    }
+
     useEffect(() => {
-        let interval
+        let interval = null
+
+        //auto scroll after 5sec if paused
         if (!run) {
             interval = setInterval(() => {
                 set_run(true)
             }, 5000)
         }
+        //auto scroll
         else {
             let reverse = false
             interval = setInterval(() => {
@@ -64,17 +83,9 @@ export const Slider = () => {
             }, 3000)
         }
         return () => clearInterval(interval)
-    }, [run])
+    }, [run, games])
 
-    const decrId = () => {
-        set_run(false)
-        set_current_id(prev_id => prev_id - 1 < 0 ? 0 : prev_id - 1)
-    }
-    const incrId = () => {
-        set_run(false)
-        set_current_id(prev_id => prev_id + 1 > games.length - 1 ? games.length - 1 : prev_id + 1)
-    }
-
+    //scroll
     let node = useRef(null)
     useEffect(() => {
         node.current.scrollTo({ left: current_id * node.current.offsetWidth, behavior: "smooth" })
@@ -87,9 +98,7 @@ export const Slider = () => {
         </SWrapButton>
         <SGames ref={node}>
             {
-                games.map(game => {
-                    return <Game set_run={set_run} key={game.id} game={game} />
-                })
+                games.map(game => <Game set_run={set_run} key={game.id} game={game} />)
             }
         </SGames>
     </SSlider>

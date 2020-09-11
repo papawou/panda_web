@@ -7,7 +7,7 @@
 	"scripts": {
 		"start:prod": "( npm run prod:build ) && ( npm run prod:start )",
 		"prod:start": "cross-env NODE_ENV=production babel-node ./server.js",
-		"prod:build": "webpack --mode=production --config webpack.prod.config.js --display-error-details",
+		"prod:build": "webpack -p --mode=production --config webpack.prod.config.js --display-error-details",
 		"start:dev": "cross-env NODE_ENV=development nodemon --ignore './frontend/' --ignore './public/' --exec babel-node server.js"
 	},
 	"keywords": [],
@@ -15,6 +15,7 @@
 	"license": "ISC",
 	"dependencies": {
 		"@types/react": "^16.9.44",
+		"axios": "^0.20.0",
 		"express": "^4.17.1",
 		"react": "^16.13.1",
 		"react-dom": "^16.13.1",
@@ -35,7 +36,7 @@
 		"babel-loader": "^8.1.0",
 		"colors": "^1.4.0",
 		"cross-env": "^6.0.3",
-		"nodemon": "^1.19.4",
+		"nodemon": "^2.0.4",
 		"react-hot-loader": "^4.12.21",
 		"svg-inline-loader": "^0.8.2",
 		"webpack": "^4.44.1",

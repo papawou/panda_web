@@ -75,7 +75,7 @@ const Game = ({ game, set_run }) => {
             <STitle>{game.name}</STitle>
             <SDesc>{game.desc}</SDesc>
         </SHover>
-        <SImg src={`.${game.thumbnail}`} />
+        <SImg src={`${game.thumbnail}`} />
     </SGame >
 }
 
