@@ -9,7 +9,7 @@ import styled, { createGlobalStyle } from 'styled-components'
 import { Slider } from './Slider'
 
 const GlobalStyle = createGlobalStyle`
-#root_gallery {
+#games_slider {
   flex-direction: column !important;
   align-items: center !important;
   

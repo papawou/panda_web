@@ -7,4 +7,4 @@ import App from './App';
 
 render((
   <App />
-), document.getElementById('root_gallery'));
+), document.getElementById('games_slider'));
