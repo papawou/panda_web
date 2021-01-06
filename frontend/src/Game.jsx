@@ -66,7 +66,7 @@ height: 100%;
 display: block;
 `
 
-const Game = ({ game, set_run }) => {
+const Game = ({ is_current, game, set_run }) => {
     return <SGame
         onMouseEnter={() => {
             set_run(false)
@@ -75,7 +75,7 @@ const Game = ({ game, set_run }) => {
             <STitle>{game.name}</STitle>
             <SDesc>{game.desc}</SDesc>
         </SHover>
-        <SImg src={`${game.thumbnail}`} />
+        <SImg src={is_current ? `src/img/test.gif` : `${game.thumbnail}`} />
     </SGame >
 }
 

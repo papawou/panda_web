@@ -39,10 +39,11 @@ overflow-y: hidden;
 export const Slider = () => {
     //fetch games
     const [games, set_games] = useState([])
+    
     useEffect(() => {
         const fetchData = async () => {
             const result = await axios('/src/games.json')
-            let i = -1
+            let i = 0
             set_games(result.data.map(game => ({ ...game, id: i++ })));
         }
 
@@ -64,7 +65,7 @@ export const Slider = () => {
 
     useEffect(() => {
         let interval = null
-
+        console.log("useEffect fired: run status -> " + run)
         //auto scroll after 5sec if paused
         if (!run) {
             interval = setInterval(() => {
@@ -98,7 +99,7 @@ export const Slider = () => {
         </SWrapButton>
         <SGames ref={node}>
             {
-                games.map(game => <Game set_run={set_run} key={game.id} game={game} />)
+                games.map(game => <Game is_current={current_id==game.id} set_run={set_run} key={game.id} game={game} />)
             }
         </SGames>
     </SSlider>
