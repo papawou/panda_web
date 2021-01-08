@@ -7,7 +7,8 @@ module.exports = {
     ],
     output: {
         path: path.join(__dirname, '/public/build'),
-        filename: "games_slider.js"
+        filename: "[name].games_slider.js",
+        publicPath: '/build/'
     },
     resolve: {
         extensions: ['.js', '.jsx']

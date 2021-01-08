@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react'
+import React, { useEffect, useRef, useState, useCallback, useLayoutEffect } from 'react'
 import styled from 'styled-components'
 
 const SGame = styled.div`
@@ -58,24 +58,47 @@ ${SGame}:hover & {
 transition: opacity 0.7s ease-in-out, top 0.5s;
 `
 
-const SImg = styled.img`
-object-fit: contain;
-object-position: center center;
+const SVideo = styled.video`
 width: 100%;
 height: 100%;
 display: block;
 `
 
-const Game = ({ is_current, game, set_run }) => {
-    return <SGame
-        onMouseEnter={() => {
-            set_run(false)
-        }}>
+const Game = ({ nextId, need_preload, is_current, game }) => {
+    const node_video = useRef(null)
+    const interval_ref = useRef(null)
+    useEffect(() => {
+        if (need_preload) {
+            node_video.current.setAttribute('src', game.video)
+            node_video.current.load()
+        }
+
+        return () => {
+            node_video.current.removeAttribute('src')
+            node_video.current.load()
+        }
+    }, [need_preload])
+
+    useEffect(() => {
+        if (is_current) {
+            interval_ref.current = setInterval(() => {
+                node_video.current.play()
+            }, 750)
+        }
+
+        return () => {
+            if (interval_ref.current != null)
+                clearInterval(interval_ref.current)
+            node_video.current.load()
+        }
+    }, [is_current])
+
+    return <SGame>
         <SHover>
             <STitle>{game.name}</STitle>
             <SDesc>{game.desc}</SDesc>
         </SHover>
-        <SImg src={is_current ? `src/img/test.gif` : `${game.thumbnail}`} />
+        <SVideo ref={node_video} onEnded={nextId} poster={game.thumbnail} muted={true} preload="metadata" />
     </SGame >
 }
 

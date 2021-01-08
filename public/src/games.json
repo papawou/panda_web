@@ -2,61 +2,73 @@
     {
         "name": "The Lab",
         "desc": "Bienvenue à The Lab, une compilation d'expériences VR à l'échelle de la pièce. Se déroulant dans un recoin d'Aperture Science, vous pourrez réparer un robot, défendre un château, adopter un chien mécanique, partir en voyage et bien plus encore.",
-        "thumbnail": "/src/img/the_lab.jpg"
+        "thumbnail": "/src/img/the_lab.jpg",
+        "video": "/src/video/the_lab.mp4"
     },
     {
         "name": "Desert Range",
         "desc": "Desert range est un jeu de simulation de tir. Trouvez les cibles avant de les shooter. Les cibles sont cachées dans toute la map, plus vous en touchez plus votre score est élevé !",
-        "thumbnail": "/src/img/desert_range.jpg"
+        "thumbnail": "/src/img/desert_range.jpg",
+        "video": "/src/video/desert_range.mp4"
     },
     {
         "name": "Kaiju",
         "desc": "Dans un monde où les robots ont pris le dessus sur les humains, vous devez détruire ces monstres mécaniques à l'aide de vos pistolets lasers et de vos super pouvoirs. Engagez vous dans des combats spectaculaires !",
-        "thumbnail": "/src/img/kaiju.jpg"
+        "thumbnail": "/src/img/kaiju.jpg",
+        "video": "/src/video/kaiju.mp4"
     },
     {
         "name": "Lop Nur Zombie",
         "desc": "Entrez dans la peau d'un agent secret envoyé pour sauver ses camarades d'une invasion de zombie. Résolvez des énigmes et affrontez des zombies de plus en plus difficiles à battre...",
-        "thumbnail": "/src/img/lop_nur_zombie.jpg"
-    },
-    {
-        "name": "The Source of Evil",
-        "desc": "Jouez le rôle d'un brillant biologiste dans une aventure au coeur de la forêt amazonienne, faisant des recherches scientifiques secrètes. Malheureusement, vos recherche ont donné lieu à des mutant...",
-        "thumbnail": "/src/img/the_source_of_evil.jpg"
-    },
-    {
-        "name": "Fancy Skiing",
-        "desc": "",
-        "thumbnail": "/src/img/fancy_skiing.jpg"
-    },
-    {
-        "name": "theBlu",
-        "desc": "",
-        "thumbnail": "/src/img/theblu.jpg"
+        "thumbnail": "/src/img/lop_nur_zombie.jpg",
+        "video": "/src/video/lop_nur_zombie.mp4"
     },
     {
         "name": "Ultimate Booster Experience",
         "desc": "",
-        "thumbnail": "/src/img/ultimate_booster_experience.jpg"
+        "thumbnail": "/src/img/ultimate_booster_experience.jpg",
+        "video": "/src/video/ultimate_booster_experience.mp4"
     },
     {
         "name": "Rift Coaster",
         "desc": "",
-        "thumbnail": "/src/img/rift_coaster.jpg"
+        "thumbnail": "/src/img/rift_coaster.jpg",
+        "video": "/src/video/rift_coaster.mp4"
     },
     {
         "name": "Fruit Ninja",
         "desc": "",
-        "thumbnail": "/src/img/fruit_ninja.jpg"
+        "thumbnail": "/src/img/fruit_ninja.jpg",
+        "video": "/src/video/fruit_ninja.mp4"
     },
     {
         "name": "Beat Saber",
         "desc": "",
-        "thumbnail": "/src/img/beat_saber.jpg"
+        "thumbnail": "/src/img/beat_saber.jpg",
+        "video": "/src/video/beat_saber.mp4"
     },
     {
         "name": "PingPong Paradise",
         "desc": "",
-        "thumbnail": "/src/img/ping_pong.jpg"
+        "thumbnail": "/src/img/ping_pong.jpg",
+        "video": "/src/video/ping_pong.mp4"
+    },
+    {
+        "name": "The Source of Evil",
+        "desc": "Jouez le rôle d'un brillant biologiste dans une aventure au coeur de la forêt amazonienne, faisant des recherches scientifiques secrètes. Malheureusement, vos recherche ont donné lieu à des mutant...",
+        "thumbnail": "/src/img/the_source_of_evil.jpg",
+        "video": "/src/video/the_source_of_evil.mp4"
+    },
+    {
+        "name": "Fancy Skiing",
+        "desc": "",
+        "thumbnail": "/src/img/fancy_skiing.jpg",
+        "video": "/src/video/fancy_skiing.mp4"
+    },
+    {
+        "name": "theBlu",
+        "desc": "",
+        "thumbnail": "/src/img/theblu.jpg",
+        "video": "/src/video/theblu.mp4"
     }
 ]

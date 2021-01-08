@@ -102,3 +102,19 @@ dist
 
 # TernJS port file
 .tern-port
+*.mp4
+*.webm
+*.mp4
+public/src/video/ultimate_booster_experience.mp4
+public/src/video/theblu.mp4
+public/src/video/the_source_of_evil.mp4
+public/src/video/the_lab.mp4
+public/src/video/rift_coaster.mp4
+public/src/video/ping_pong.mp4
+public/src/video/pavlov.webm
+public/src/video/lop_nur_zombie.mp4
+public/src/video/kaiju.mp4
+public/src/video/fruit_ninja.mp4
+public/src/video/fancy_skiing.mp4
+public/src/video/desert_range.mp4
+public/src/video/beat_saber.mp4

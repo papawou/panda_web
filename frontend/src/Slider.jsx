@@ -1,5 +1,5 @@
 
-import React, { Fragment, useState, useEffect, useRef } from 'react'
+import React, { Fragment, useState, useEffect, useRef, useLayoutEffect } from 'react'
 import axios from 'axios'
 //CSS
 import styled from 'styled-components'
@@ -37,70 +37,73 @@ overflow-y: hidden;
 `
 
 export const Slider = () => {
-    //fetch games
-    const [games, set_games] = useState([])
-    
-    useEffect(() => {
-        const fetchData = async () => {
-            const result = await axios('/src/games.json')
-            let i = 0
-            set_games(result.data.map(game => ({ ...game, id: i++ })));
-        }
+	//fetch games
+	const [games, set_games] = useState([])
 
-        fetchData()
-    }, [])
+	useEffect(() => {
+		const fetchData = async () => {
+			const result = await axios('/src/games.json')
+			let i = 0
+			set_games(result.data.map(game => ({ ...game, id: i++ })));
+		}
+		fetchData()
+	}, [])
 
-    const [run, set_run] = useState(true)
-    const [current_id, set_current_id] = useState(0)
+	const [current_id, set_current_id] = useState(0)
+	const reverse = useRef(null)
 
-    //onclick button
-    const decrId = () => {
-        set_run(false)
-        set_current_id(prev_id => prev_id - 1 < 0 ? 0 : prev_id - 1)
-    }
-    const incrId = () => {
-        set_run(false)
-        set_current_id(prev_id => prev_id + 1 > games.length - 1 ? games.length - 1 : prev_id + 1)
-    }
+	//onclick button
+	const decrId = () => {
+		set_current_id(prev_id => {
+			if (prev_id - 1 <= 0) {
+				reverse.current = false
+				return 0
+			}
+			return prev_id - 1
+		})
+	}
+	const incrId = () => {
+		set_current_id(prev_id => {
+			if (prev_id + 1 >= games.length - 1) {
+				reverse.current = true
+				return games.length - 1
+			}
+			return prev_id + 1
+		})
+	}
 
-    useEffect(() => {
-        let interval = null
-        console.log("useEffect fired: run status -> " + run)
-        //auto scroll after 5sec if paused
-        if (!run) {
-            interval = setInterval(() => {
-                set_run(true)
-            }, 5000)
-        }
-        //auto scroll
-        else {
-            let reverse = false
-            interval = setInterval(() => {
-                set_current_id(prev_id => {
-                    if (prev_id <= 0 || games.length - 1 <= prev_id)
-                        reverse = !reverse
-                    return reverse ? prev_id - 1 < 0 ? 0 : prev_id - 1 : prev_id + 1 > games.length - 1 ? games.length - 1 : prev_id + 1
-                })
-            }, 3000)
-        }
-        return () => clearInterval(interval)
-    }, [run, games])
+	//called when video.ended
+	const nextId = () => {
+		set_current_id(prev_id => {
+			if (prev_id == 0)
+				reverse.current = false
+			else if (prev_id == games.length - 1)
+				reverse.current = true
+			else if (reverse.current == null)
+				reverse.current = false
+			return reverse.current ? prev_id - 1 : prev_id + 1
+		})
+	}
 
-    //scroll
-    let node = useRef(null)
-    useEffect(() => {
-        node.current.scrollTo({ left: current_id * node.current.offsetWidth, behavior: "smooth" })
-    }, [current_id])
+	//scroll
+	const node = useRef(null)
+	useEffect(() => {
+		node.current.scrollTo({ left: current_id * node.current.offsetWidth, behavior: "smooth" })
+	}, [current_id])
 
-    return <SSlider>
-        <SWrapButton>
-            <NextButton is_left={true} is_disabled={current_id == 0} onClick={decrId}>-1</NextButton>
-            <NextButton is_disabled={current_id == (games.length - 1)} onClick={incrId}>+1</NextButton>
-        </SWrapButton>
-        <SGames ref={node}>
-            {
-                games.map(game => <Game is_current={current_id==game.id} set_run={set_run} key={game.id} game={game} />)
-            }
-        </SGames>
-    </SSlider>
+	return <SSlider>
+		<SWrapButton>
+			<NextButton is_left={true} is_disabled={current_id == 0} onClick={decrId}>-1</NextButton>
+			<NextButton is_disabled={current_id == (games.length - 1)} onClick={incrId}>+1</NextButton>
+		</SWrapButton>
+		<SGames ref={node}>
+			{
+				games.map(game =>
+					<Game nextId={nextId} need_preload={(current_id - 1) <= game.id && game.id <= (current_id + 1)} is_current={game.id == current_id} key={game.id} game={game} />
+				)
+			}
+		</SGames>
+	</SSlider>
 }
+
+export default Slider
