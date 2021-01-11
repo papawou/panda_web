@@ -1,9 +1,4 @@
-
-//HOT LOADER
-import { setConfig } from 'react-hot-loader'
-import { hot } from 'react-hot-loader/root'
-setConfig({ logLevel: 'debug' })
-import React, { Fragment, useState, useEffect, Suspense } from 'react'
+import React, { useState } from 'react'
 //CSS
 import styled, { createGlobalStyle } from 'styled-components'
 
@@ -105,6 +100,7 @@ const GlobalStyle = createGlobalStyle`
 `
 //components
 import Loading from './Loading'
+import Slider from './Slider'
 
 const SBase = styled.div`
 width: 100%;
@@ -120,8 +116,6 @@ const STitle = styled.div`
 text-align: center !important;
 `
 
-const LazySlider = React.lazy(() => import('./Slider'));
-
 const App = () => {
   const [load_slider, set_slider] = useState(false)
 
@@ -133,14 +127,12 @@ const App = () => {
     <GlobalStyle />
     <STitle className="h2 travel">Les expériences proposées</STitle>
     <SBase>
-      <Suspense fallback={<Loading />}>
-        {
-          load_slider ?
-            <LazySlider /> : <Loading />
-        }
-      </Suspense>
+      {
+        load_slider ?
+          <Slider /> : <Loading />
+      }
     </SBase>
   </React.Fragment>
 }
 
-export default hot(App)
+export default App

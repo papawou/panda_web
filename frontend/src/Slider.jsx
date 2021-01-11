@@ -1,5 +1,5 @@
 
-import React, { Fragment, useState, useEffect, useRef, useLayoutEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import axios from 'axios'
 //CSS
 import styled from 'styled-components'

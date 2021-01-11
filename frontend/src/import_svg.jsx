@@ -1,5 +1,5 @@
 import React from 'react'
-import styled, { css, keyframes } from 'styled-components'
+import styled from 'styled-components'
 
 const SNextButton = styled.svg`
     opacity: ${props => props.is_disabled ? '0' : '1'};

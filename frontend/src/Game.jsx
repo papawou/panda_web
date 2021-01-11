@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState, useCallback, useLayoutEffect } from 'react'
+import React, { useEffect, useRef } from 'react'
 import styled from 'styled-components'
 
 const SGame = styled.div`
@@ -87,9 +87,10 @@ const Game = ({ nextId, need_preload, is_current, game }) => {
         }
 
         return () => {
-            if (interval_ref.current != null)
+            if (interval_ref.current != null) {
                 clearInterval(interval_ref.current)
-            node_video.current.load()
+                node_video.current.load()
+            }
         }
     }, [is_current])
 
@@ -98,7 +99,7 @@ const Game = ({ nextId, need_preload, is_current, game }) => {
             <STitle>{game.name}</STitle>
             <SDesc>{game.desc}</SDesc>
         </SHover>
-        <SVideo ref={node_video} onEnded={nextId} poster={game.thumbnail} muted={true} preload="metadata" />
+        <SVideo ref={node_video} onEnded={nextId} poster={game.thumbnail} volume={0} muted={true} preload="metadata" />
     </SGame >
 }
 
